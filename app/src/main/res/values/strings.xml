@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Online Medicine Service</string>
+    <string name="customerloginpageheader">Online Medicine Service</string>
+    <string name="createac">No account yet? <u>Click here</u> to create one</string>
+    <string name="login">Login To Your Account</string>
+    <string name="signup">Signup For Free!</string>
+</resources>
