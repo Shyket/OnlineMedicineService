@@ -64,7 +64,6 @@ public class CustomerLoginPage extends AppCompatActivity {
             Toast.makeText(this, "Fields are empty!", Toast.LENGTH_SHORT).show();
 
 
-
         }else{
 
             email = (String) emailText.getText();
