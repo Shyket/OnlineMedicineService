@@ -110,6 +110,7 @@ public class CustomerLoginPage extends AppCompatActivity {
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
+
                         }
                     });
 
