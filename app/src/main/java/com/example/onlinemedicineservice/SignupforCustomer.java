@@ -10,5 +10,6 @@ public class SignupforCustomer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signupfor_customer);
+
     }
 }
