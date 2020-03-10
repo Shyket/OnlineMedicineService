@@ -4,4 +4,7 @@
     <string name="createac">No account yet? <u>Click here</u> to create one</string>
     <string name="login">Login To Your Account</string>
     <string name="signup">Signup For Free!</string>
+    <string name="gotophermacy">Administrator</string>
+    <string name="gotocustomer">Customer</string>
+    <string name="choosetetx">Procceed for :</string>
 </resources>
