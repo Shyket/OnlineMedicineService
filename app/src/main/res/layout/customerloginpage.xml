@@ -8,14 +8,14 @@
     tools:context=".CustomerLoginPage">
 
     <EditText
-        android:id="@+id/emailText"
+        android:id="@+id/phonenumberText"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
+        android:hint="Phone Number"
+        android:inputType="phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailText"
+        app:layout_constraintTop_toBottomOf="@+id/phonenumberText"
         app:layout_constraintVertical_bias="0.067" />
 
     <TextView
@@ -51,7 +51,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/emailText"
+        app:layout_constraintBottom_toTopOf="@+id/phonenumberText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,6 @@
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
         android:background="#093B63"
-        android:onClick="login"
         android:text="LOGIN"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +97,7 @@
         android:gravity="center"
         android:text="@string/login"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailText"
+        app:layout_constraintBottom_toTopOf="@+id/phonenumberText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"

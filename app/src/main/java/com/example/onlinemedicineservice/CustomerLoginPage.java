@@ -13,14 +13,24 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.onlinemedicineservice.Model.Users;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class CustomerLoginPage extends AppCompatActivity {
 
-    TextView emailText,passwordText,clickText;
-    private String email,password,text;
+    EditText phonenumberText,passwordText;
+    TextView clickText;
+    private String text;
     Button loginButton;
+
 
 
     @Override
@@ -28,7 +38,11 @@ public class CustomerLoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerloginpage);
 
-        emailText = findViewById(R.id.emailText);
+
+       final FirebaseDatabase database = FirebaseDatabase.getInstance();
+       final DatabaseReference users = database.getReference("Users");
+
+        phonenumberText= findViewById(R.id.phonenumberText);
         passwordText = findViewById(R.id.passwordText);
         loginButton = findViewById(R.id.loginButton);
         clickText = findViewById(R.id.clickHere);
@@ -55,25 +69,57 @@ public class CustomerLoginPage extends AppCompatActivity {
         clickText.setMovementMethod(LinkMovementMethod.getInstance());
         clickText.setHighlightColor(Color.TRANSPARENT);
 
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(phonenumberText.getText().toString().isEmpty() || passwordText.getText().toString().isEmpty()){
+
+                    Toast.makeText(CustomerLoginPage.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+
+                    //check in the database;     *if authentication succed then login is successful. else wrong username and password.
+
+                    users.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            if(dataSnapshot.child(phonenumberText.getText().toString()).exists()) {
+
+                                Users user = dataSnapshot.child(phonenumberText.getText().toString()).getValue(Users.class);
+
+                                if (user.getPassword().equals(passwordText.getText().toString())) {
+
+                                    Toast.makeText(CustomerLoginPage.this, "Welcome!", Toast.LENGTH_SHORT).show();
+
+                                } else {
+
+                                    Toast.makeText(CustomerLoginPage.this, "Login Failed", Toast.LENGTH_LONG).show();
+                                }
+                            }else{
+
+                                Toast.makeText(CustomerLoginPage.this, "User doesn't exist! Create new account.", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+
+            }
+        });
+
     }
 
-    public void login(View view){
-
-        if(emailText.getText().toString().isEmpty() || passwordText.getText().toString().isEmpty()){
-
-            Toast.makeText(this, "Fields are empty!", Toast.LENGTH_SHORT).show();
-
-
-        }else{
-
-            email = (String) emailText.getText();
-            password = (String) passwordText.getText();
-
-            //check in the database;     *if authentication succed then login is successful. else wrong username and password.
-
-        }
-
-    }
 
 
 
