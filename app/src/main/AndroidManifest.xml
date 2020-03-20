@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".HomeActivity"
+            android:name=".StoreActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/NoActionBar"></activity>
         <activity android:name=".AdminLoginPage" />

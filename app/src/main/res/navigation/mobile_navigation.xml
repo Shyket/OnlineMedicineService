@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_store"
-        android:name="com.example.onlinemedicineservice.ui.home.HomeFragment"
+        android:name="com.example.onlinemedicineservice.ui.store.StoreFragment"
         android:label="@string/menu_store"
-        tools:layout="@layout/fragment_home">
+        tools:layout="@layout/fragment_store">
 
         <action
             android:id="@+id/action_HomeFragment_to_HomeSecondFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_home_second"
-        android:name="com.example.onlinemedicineservice.ui.home.HomeSecondFragment"
+        android:name="com.example.onlinemedicineservice.ui.store.HomeSecondFragment"
         android:label="@string/home_second"
         tools:layout="@layout/fragment_home_second">
         <action
@@ -31,13 +31,13 @@
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.onlinemedicineservice.ui.gallery.GalleryFragment"
+        android:name="com.example.onlinemedicineservice.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_profile" />
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.example.onlinemedicineservice.ui.slideshow.SlideshowFragment"
+        android:name="com.example.onlinemedicineservice.ui.logout.LogoutFragment"
         android:label="@string/menu_logout"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_logout" />
 </navigation>

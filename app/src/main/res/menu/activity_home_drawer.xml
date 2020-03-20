@@ -9,6 +9,13 @@
             android:checkable="true"
             android:icon="@android:drawable/ic_menu_today"
             android:title="@string/menu_store" />
+
+        <item
+            android:id="@+id/nav_cart"
+            android:checkable="true"
+            android:icon="@android:drawable/ic_menu_today"
+            android:title="Cart" />
+
         <item
             android:id="@+id/nav_profile"
             android:icon="@android:drawable/ic_menu_view"
