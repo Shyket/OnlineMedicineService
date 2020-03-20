@@ -117,8 +117,3 @@ public class AdminLoginPage extends AppCompatActivity {
         });
 
     }
-
-
-
-}
-
