@@ -26,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AdminLoginPage extends AppCompatActivity {
 
-    EditText phonenumberText,passwordText;
+    EditText phonenumberText, passwordText;
     TextView clickText;
     private String text;
     Button loginButton;
@@ -39,7 +39,7 @@ public class AdminLoginPage extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference users = database.getReference("Users");
 
-        phonenumberText= findViewById(R.id.phonenumberText);
+        phonenumberText = findViewById(R.id.phonenumberText);
         passwordText = findViewById(R.id.passwordText);
         loginButton = findViewById(R.id.loginButton);
         clickText = findViewById(R.id.clickHere);
@@ -50,17 +50,18 @@ public class AdminLoginPage extends AppCompatActivity {
             @Override
             public void onClick(View textView) {
 
-                Intent intent  = new Intent(textView.getContext(),SignupforCustomer.class);
+                Intent intent = new Intent(textView.getContext(), SignupforCustomer.class);
                 startActivity(intent);
 
             }
-            public void updateDrawState(TextPaint paint){
+
+            public void updateDrawState(TextPaint paint) {
 
                 super.updateDrawState(paint);
                 paint.setUnderlineText(false);
             }
         };
-        spannableString.setSpan(clickableSpan,16,26, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(clickableSpan, 16, 26, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         clickText.setText(spannableString);
         clickText.setMovementMethod(LinkMovementMethod.getInstance());
@@ -71,12 +72,12 @@ public class AdminLoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(phonenumberText.getText().toString().isEmpty() || passwordText.getText().toString().isEmpty()){
+                if (phonenumberText.getText().toString().isEmpty() || passwordText.getText().toString().isEmpty()) {
 
                     Toast.makeText(AdminLoginPage.this, "Fields are empty!", Toast.LENGTH_SHORT).show();
 
 
-                }else{
+                } else {
 
                     //check in the database;     *if authentication succed then login is successful. else wrong username and password.
 
@@ -84,7 +85,7 @@ public class AdminLoginPage extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            if(dataSnapshot.child(phonenumberText.getText().toString()).exists()) {
+                            if (dataSnapshot.child(phonenumberText.getText().toString()).exists()) {
 
                                 Users user = dataSnapshot.child(phonenumberText.getText().toString()).getValue(Users.class);
 
@@ -96,7 +97,7 @@ public class AdminLoginPage extends AppCompatActivity {
 
                                     Toast.makeText(AdminLoginPage.this, "Login Failed", Toast.LENGTH_LONG).show();
                                 }
-                            }else{
+                            } else {
 
                                 Toast.makeText(AdminLoginPage.this, "User doesn't exist! Create new account.", Toast.LENGTH_LONG).show();
 
@@ -117,3 +118,4 @@ public class AdminLoginPage extends AppCompatActivity {
         });
 
     }
+}
