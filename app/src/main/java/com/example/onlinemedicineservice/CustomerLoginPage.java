@@ -95,6 +95,9 @@ public class CustomerLoginPage extends AppCompatActivity {
 
                                     Toast.makeText(CustomerLoginPage.this, "Welcome!", Toast.LENGTH_SHORT).show();
 
+                                    Intent intent  = new Intent(CustomerLoginPage.this,HomeActivity.class);
+                                    startActivity(intent);
+
                                 } else {
 
                                     Toast.makeText(CustomerLoginPage.this, "Login Failed", Toast.LENGTH_LONG).show();
