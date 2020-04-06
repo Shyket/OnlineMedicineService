@@ -22,4 +22,10 @@
 
     <string name="home_second">Home Second</string>
     <string name="popularCatagory">Popular Catagories</string>
+    <string name="addToCartString">Add To Cart</string>
+    <string name="whatsThePriceText">Price :</string>
+    <string name="whatsTheStrengthText">Strength :</string>
+    <string name="whatsTheChemicalText">Chemical Formula :</string>
+    <string name="whatsTheDosageText">Dosage Form :</string>
+    <string name="whatsTheCompanyText">Menufacturer :</string>
 </resources>

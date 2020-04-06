@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#196CAD"
-    tools:context=".SignupforCustomer">
+    tools:context=".customerloginsignup.SignupforCustomer">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/titleLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -38,6 +38,8 @@
             android:gravity="center"
             android:text="@string/signup"
             android:textSize="24sp" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -49,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout">
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -62,88 +64,189 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editText"
+                <LinearLayout
+                    android:id="@+id/IdentityLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Name"
-                    android:inputType="textPersonName" />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/editText2"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress" />
+                    <TextView
+                        android:id="@+id/textView21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:gravity="center"
+                        android:text="Your Identity"
+                        android:textSize="20sp" />
 
-                <EditText
-                    android:id="@+id/editText3"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Password"
-                    android:inputType="textPassword" />
 
-                <EditText
-                    android:id="@+id/editText4"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Retype password"
-                    android:inputType="textPassword" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        app:errorEnabled="true">
 
-                <EditText
-                    android:id="@+id/editText5"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Phone Number"
-                    android:inputType="phone" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/name1Edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="First Name"
+                            android:inputType="textPersonName" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <EditText
-                    android:id="@+id/editText6"
-                    android:layout_width="match_parent"
-                    android:layout_height="64dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Address"
-                    android:inputType="textPostalAddress" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="10"
+                        app:errorEnabled="true">
 
-                <EditText
-                    android:id="@+id/editText7"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/name2Edittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="Last Name"
+                            android:inputType="textPersonName" />
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="30"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/emailEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="11"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/phonenumberEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="Phone Number"
+                            android:inputType="phone" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:errorEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dobEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="Date of Birth"
+                            android:inputType="date" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/passwordLinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="64dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:hint="Date of Birth"
-                    android:inputType="date" />
+                    android:layout_marginBottom="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Give a Strong Password"
+                        android:textSize="20sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="20">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/passwordEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:ems="10"
+                            android:hint="Password"
+                            android:inputType="textPassword" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/repasswordEdittext"
+                            android:layout_width="match_parent"
+                            android:layout_height="64dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:autofillHints="Retype Password"
+                            android:ems="10"
+                            android:hint="Retype password"
+                            android:inputType="textPassword" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
 
                 <Button
                     android:id="@+id/signupbutton"
                     android:layout_width="330dp"
                     android:layout_height="56dp"
                     android:layout_marginTop="35dp"
+                    android:layout_marginBottom="20dp"
                     android:background="#093B63"
                     android:text="CREATE ACCOUNT"
                     android:textSize="18sp" />

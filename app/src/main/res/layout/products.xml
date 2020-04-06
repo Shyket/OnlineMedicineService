@@ -1,49 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#196CAD">
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="#196CAD"
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="412dp"
-        android:layout_height="391dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:orientation="vertical"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022">
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider" />
 
-        <TextView
-            android:id="@+id/productNameText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/productNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/productDescText"
-            android:layout_width="387dp"
-            android:layout_height="268dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp"
-            android:text="TextView" />
+    <TextView
+        android:id="@+id/whatsthecompanyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsTheCompanyText" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="15dp"
-            android:background="#093B63"
-            android:text="Button" />
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/companyNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/whatsTheDosagetext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsTheDosageText" />
+
+    <TextView
+        android:id="@+id/dosageFormText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/whatsTheChemicalText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsTheChemicalText" />
+
+    <TextView
+        android:id="@+id/chemicalText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/whatsTheStrengthText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsTheStrengthText" />
+
+    <TextView
+        android:id="@+id/strengthText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/whatsThePriceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/whatsThePriceText" />
+
+    <TextView
+        android:id="@+id/priceText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:background="#093B63"
+        android:ellipsize="none"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/addToCartString" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="?android:attr/listDivider" />
+
+
+</LinearLayout>
+
