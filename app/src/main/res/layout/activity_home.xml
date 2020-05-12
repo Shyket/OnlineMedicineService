@@ -9,21 +9,37 @@
     android:background="#EAEA9A"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/home_bar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#286A9E"
+            app:popupTheme="@style/PopupOverlay" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/host"/>
+
+
+    </LinearLayout>
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
-        android:background="#1E1D1D"
+        android:background="#286A9E"
         app:itemTextColor="@android:color/white"
         app:itemIconTint="@android:color/white"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_home"
+        app:headerLayout="@layout/nav_header"
         app:menu="@menu/activity_home_drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

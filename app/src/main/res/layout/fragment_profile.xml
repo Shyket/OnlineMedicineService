@@ -1,283 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/profileinfoLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#196CAD"
-    tools:context=".drawermenuitems.profile.ProfileFragment" >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="128dp"
+        android:layout_height="135dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_account_circle_black_24dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="15dp"
+        android:text="@string/your_details"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="30sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp"
-                android:orientation="vertical">
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:textSize="22sp" />
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="152dp"
-                    android:src="@drawable/ic_menu_gallery" />
-            </LinearLayout>
+    <TextView
+        android:id="@+id/emailAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="22sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical">
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="22sp" />
 
-                <TextView
-                    android:id="@+id/textView8"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="Your Details"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+    <Button
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="#093B63"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/editProfile"
+        android:textSize="18sp" />
 
-                <View
-                    android:id="@+id/divider"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="?android:attr/listDivider" />
+    <Button
+        android:id="@+id/deleteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="#093B63"
+        android:padding="10dp"
+        android:text="@string/deleteProfileText"
+        android:textColor="#EFE9E9"
+        android:textSize="18sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:orientation="horizontal">
+</LinearLayout>
 
-                    <TextView
-                        android:id="@+id/textView9"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Full Name"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
 
-                <View
-                    android:id="@+id/divider2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Email Address"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider3"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginBottom="5dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView13"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Phone Number"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView14"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider4"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="?android:attr/listDivider" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:gravity="center"
-                    android:text="Your Address"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                <View
-                    android:id="@+id/divider5"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView16"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Address Line 1"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider6"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView18"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Address Line 2"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider7"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView22"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Town"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divider8"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="?android:attr/listDivider" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_weight="1"
-                        android:text="Postcode"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
-
-                    <TextView
-                        android:id="@+id/textView25"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="TextView" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.onlinemedicineserviceOldVedrsion">
+    package="com.example.onlinemedicineservice">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -14,18 +15,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name="com.example.onlinemedicineserviceOldVedrsion.HomeActivity"
-            android:label="@string/title_activity_home"
-            android:theme="@style/NoActionBar"/>
-        <activity android:name="com.example.onlinemedicineserviceOldVedrsion.customerloginsignup.CustomerLoginPage" />
-        <activity android:name="com.example.onlinemedicineserviceOldVedrsion.customerloginsignup.SignupforCustomer" />
-        <activity android:name="com.example.onlinemedicineserviceOldVedrsion.MainActivity">
+            android:name="com.example.onlinemedicineservice.HomeActivity"
+            android:theme="@style/NoActionBar"
+            android:label="Store"
+            />
+        <activity android:name="com.example.onlinemedicineservice.customerloginsignup.SigninActivity" />
+        <activity android:name="com.example.onlinemedicineservice.customerloginsignup.SignupActivity" />
+        <activity android:name="com.example.onlinemedicineservice.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.onlinemedicineservice.ProductDetails" />
     </application>
 
 </manifest>

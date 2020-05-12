@@ -7,7 +7,7 @@
     <string name="gotophermacy">Administrator</string>
     <string name="gotocustomer">Customer</string>
     <string name="choosetetx">Procceed for :</string>
-    <string name="queryHint">Search for medicine</string>
+    <string name="queryHint">Search for medicines</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -28,4 +28,20 @@
     <string name="whatsTheChemicalText">Chemical Formula :</string>
     <string name="whatsTheDosageText">Dosage Form :</string>
     <string name="whatsTheCompanyText">Menufacturer :</string>
+    <string name="cart">Cart</string>
+    <string name="your_details">Your Details</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="death_of_birth">Death of Birth</string>
+    <string name="editProfile">Edit</string>
+    <string name="commitChanges">Commit Changes</string>
+    <string name="deleteProfileText">DELETE PROFILE</string>
+    <string name="changePassword"><u>Change Password</u></string>
+    <string name="addButtonText">+</string>
+    <string name="removeButtonText">-</string>
+    <string name="notAvailable">Not Available</string>
+    <string name="inStock">In Stock</string>
+    <string name="product_desc">Product Description:</string>
 </resources>
