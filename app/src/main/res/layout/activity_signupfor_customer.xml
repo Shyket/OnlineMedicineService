@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#196CAD"
+    android:background="#2C3947"
     tools:context=".customerloginsignup.SignupActivity">
 
     <LinearLayout
@@ -27,6 +27,7 @@
             android:paddingLeft="10dp"
             android:text="@string/customerloginpageheader"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#00B8D4"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -37,6 +38,8 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="@string/signup"
+            android:textColor="#00B8D4"
+            android:textColorHighlight="#A82323"
             android:textSize="24sp" />
 
 
@@ -81,16 +84,17 @@
                         android:layout_margin="10dp"
                         android:gravity="center"
                         android:text="Your Identity"
+                        android:textColor="#00B8D4"
                         android:textSize="20sp" />
 
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:elevation="5dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="10"
-                        app:errorEnabled="true"
-                        android:elevation="5dp">
+                        app:errorEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name1Edittext"
@@ -101,16 +105,19 @@
                             android:layout_marginRight="5dp"
                             android:ems="10"
                             android:hint="First Name"
-                            android:inputType="textPersonName" />
+                            android:inputType="textPersonName"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:elevation="5dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="10"
-                        app:errorEnabled="true"
-                        android:elevation="5dp">
+                        app:errorEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/name2Edittext"
@@ -121,7 +128,11 @@
                             android:layout_marginRight="5dp"
                             android:ems="10"
                             android:hint="Last Name"
-                            android:inputType="textPersonName" />
+                            android:inputType="textPersonName"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4"
+                            android:textColorLink="#00B8D4" />
 
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -130,9 +141,9 @@
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:elevation="5dp"
                         app:counterEnabled="true"
-                        app:errorEnabled="true"
-                        android:elevation="5dp">
+                        app:errorEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/emailEdittext"
@@ -143,16 +154,20 @@
                             android:layout_marginRight="5dp"
                             android:ems="10"
                             android:hint="Email"
-                            android:inputType="textEmailAddress" />
+                            android:inputType="textEmailAddress"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4"
+                            android:textColorLink="#00B8D4" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:elevation="5dp"
                         app:counterEnabled="true"
                         app:counterMaxLength="11"
-                        app:errorEnabled="true"
-                        android:elevation="5dp">
+                        app:errorEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/phonenumberEdittext"
@@ -163,7 +178,11 @@
                             android:layout_marginRight="5dp"
                             android:ems="10"
                             android:hint="Phone Number"
-                            android:inputType="phone" />
+                            android:inputType="phone"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4"
+                            android:textColorLink="#00B8D4" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
@@ -185,14 +204,15 @@
                         android:layout_marginBottom="10dp"
                         android:gravity="center"
                         android:text="Give a Strong Password"
+                        android:textColor="#00B8D4"
                         android:textSize="20sp" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:elevation="5dp"
                         app:counterEnabled="true"
-                        app:counterMaxLength="20"
-                        android:elevation="5dp">
+                        app:counterMaxLength="20">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/passwordEdittext"
@@ -203,7 +223,11 @@
                             android:layout_marginRight="5dp"
                             android:ems="10"
                             android:hint="Password"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4"
+                            android:textColorLink="#00B8D4" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -222,7 +246,12 @@
                             android:autofillHints="Retype Password"
                             android:ems="10"
                             android:hint="Retype password"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:textAllCaps="false"
+                            android:textColor="#00B8D4"
+                            android:textColorHighlight="#00B8D4"
+                            android:textColorHint="#00B8D4"
+                            android:textColorLink="#00B8D4" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -236,8 +265,9 @@
                     android:layout_height="56dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginBottom="20dp"
-                    android:background="#093B63"
+                    android:background="#2A4B50"
                     android:text="CREATE ACCOUNT"
+                    android:textColor="#00B8D4"
                     android:textSize="18sp" />
             </LinearLayout>
         </ScrollView>

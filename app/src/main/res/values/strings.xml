@@ -44,4 +44,5 @@
     <string name="notAvailable">Not Available</string>
     <string name="inStock">In Stock</string>
     <string name="product_desc">Product Description:</string>
+    <string name="confirm_order">Proceed To Order</string>
 </resources>

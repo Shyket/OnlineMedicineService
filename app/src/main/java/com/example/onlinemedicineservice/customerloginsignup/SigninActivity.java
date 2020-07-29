@@ -2,8 +2,7 @@ package com.example.onlinemedicineservice.customerloginsignup;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +12,7 @@ import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -21,12 +21,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.onlinemedicineservice.HomeActivity;
-import com.example.onlinemedicineservice.Model.Users;
-import com.example.onlinemedicineservice.PasswordFactory;
 import com.example.onlinemedicineservice.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.example.onlinemedicineservice.sqlDatabase.ProductViewModel;
+import com.example.onlinemedicineservice.sqlDatabase.SuggestionModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,48 +32,104 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import static com.example.onlinemedicineservice.common.common.currentUser;
+import java.util.List;
 
 public class SigninActivity extends AppCompatActivity {
 
-    EditText  passwordText;
-    EditText emailText;
-    TextView clickText;
+    public static List<String> SUGGETION_FOR_SEARCH; //suggetion list
+    ProductViewModel productViewModel;
     private String text;
-    Button loginButton;
-    public Users user;
-    private FirebaseAuth auth;
+
+    //UI components
+    private EditText  passwordText;
+    private EditText emailText;
+    private TextView clickText;
+    private Button loginButton;
+
+    interface DatabaseCallback {
+        void onCallBack(Boolean update);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.customerloginpage);
 
-        auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
-        if(currentUser != null){ gotoHomeActivity(currentUser.getUid()); }
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        SUGGETION_FOR_SEARCH = productViewModel.getAllSuggestion();
+        searchForUpdate(update -> {
+            if(update) {
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference ref = firebaseDatabase.getReference("Products");
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String suggestion = ds.child("productname").getValue(String.class);
+                            if (suggestion != null) {
+                                productViewModel.insertSuggestion(new SuggestionModel(suggestion));
+                                if(!SUGGETION_FOR_SEARCH.contains(suggestion)){
+                                    SUGGETION_FOR_SEARCH.add(suggestion);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Log.e("database",databaseError.getMessage());
+                    }
+                });
+            }
+
+        });
+
+        checkForCurrentUser();
+
     }
+
+    private void checkForCurrentUser() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        if(currentUser != null) {
+            if (currentUser.isEmailVerified()) {
+                gotoHomeActivity(currentUser.getUid());
+            }
+        }
+    }
+
+    private void searchForUpdate(final DatabaseCallback databaseCallback) {
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference refToUpdate = firebaseDatabase.getReference("Update");
+        refToUpdate.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                databaseCallback.onCallBack(dataSnapshot.getValue(Boolean.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        //initializing UI elements
         emailText = findViewById(R.id.emailText);
         passwordText = findViewById(R.id.passwordText);
         loginButton = findViewById(R.id.loginButton);
         clickText = findViewById(R.id.clickHere);
         text = clickText.getText().toString();
 
-
         actionOnClickText(clickText.getText().toString(),clickText);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                validateUser();
-            }
-        });
+        loginButton.setOnClickListener(view -> validateUser());
 
     }
 
@@ -88,32 +141,31 @@ public class SigninActivity extends AppCompatActivity {
 
     private void validateUser() {
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+
         if (fieldscheck()) {
             auth.signInWithEmailAndPassword(
                     emailText.getText().toString(),
                     passwordText.getText().toString())
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+                    .addOnCompleteListener(this, task -> {
 
-                            if (task.isSuccessful()) {
+                        if (task.isSuccessful()) {
 
-                                if (auth.getCurrentUser().isEmailVerified()) {
+                            if (auth.getCurrentUser().isEmailVerified()) {
 
-                                    gotoHomeActivity(auth.getCurrentUser().getUid());
-
-                                }
-                                else {
-                                    Toast.makeText(getApplicationContext(), "Verify Your Account",
-                                            Toast.LENGTH_LONG).show();
-                                }
+                                gotoHomeActivity(auth.getCurrentUser().getUid());
 
                             }
                             else {
-
-                                Toast.makeText(getApplicationContext(), task.getException().getMessage(),
+                                Toast.makeText(getApplicationContext(), "Verify Your Account",
                                         Toast.LENGTH_LONG).show();
                             }
+
+                        }
+                        else {
+
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(),
+                                    Toast.LENGTH_LONG).show();
                         }
                     });
 
@@ -122,10 +174,7 @@ public class SigninActivity extends AppCompatActivity {
     }
 
     private void gotoHomeActivity(String userid) {
-        Bundle args = new Bundle();
-        args.putString("userid",userid);
         Intent intent  = new Intent(SigninActivity.this, HomeActivity.class);
-        intent.putExtras(args);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
@@ -173,14 +222,4 @@ public class SigninActivity extends AppCompatActivity {
         clickText.setHighlightColor(Color.TRANSPARENT);
 
     }
-
-    private boolean validatePassword(String password){
-
-        PasswordFactory passwordFactory = new PasswordFactory();
-
-        return passwordFactory.retrievePassword(password).equals(passwordText.getText().toString());
-    }
-
-
-
 }

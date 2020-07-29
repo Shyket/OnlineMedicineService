@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.Menu;
-import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.example.onlinemedicineservice.Model.Users;
 import com.example.onlinemedicineservice.customerloginsignup.SigninActivity;
 import com.example.onlinemedicineservice.drawermenuitems.cart.CartFragment;
+import com.example.onlinemedicineservice.drawermenuitems.profile.ChangeProfile;
 import com.example.onlinemedicineservice.drawermenuitems.profile.ProfileFragment;
 import com.example.onlinemedicineservice.drawermenuitems.store.StoreFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -21,18 +19,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import static com.example.onlinemedicineservice.common.common.currentUser;
-
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    public final static String CHANGE_PROFILE_TAG = "profilechange";
+    public final static String PRODUCT_DETAILS_TAG = "productdetails";
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private  long backPressedTime;
@@ -42,8 +36,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_home);
+
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle("Store");
@@ -121,10 +115,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(Gravity.LEFT);
+            drawer.closeDrawer(GravityCompat.START);
         }else{
 
-            if(navigationView.getCheckedItem().getItemId() == R.id.nav_cart ||
+            ChangeProfile changeProfileFragment = (ChangeProfile) getSupportFragmentManager()
+                    .findFragmentByTag(CHANGE_PROFILE_TAG);
+            ProductDetails productDetailsFragment = (ProductDetails) getSupportFragmentManager()
+                    .findFragmentByTag(PRODUCT_DETAILS_TAG);
+
+            if(productDetailsFragment != null && productDetailsFragment.isVisible()){
+                getSupportFragmentManager().beginTransaction().replace(R.id.host,
+                        new StoreFragment()).commit();
+            }
+            else if(changeProfileFragment != null && changeProfileFragment.isVisible()){
+                getSupportFragmentManager().beginTransaction().replace(R.id.host,
+                        new ProfileFragment()).commit();
+
+            } else if(navigationView.getCheckedItem().getItemId() == R.id.nav_cart ||
                     navigationView.getCheckedItem().getItemId() == R.id.nav_profile){
 
                 toolbar.setTitle("Store");

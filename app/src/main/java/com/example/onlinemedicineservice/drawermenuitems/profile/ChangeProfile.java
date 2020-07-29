@@ -2,7 +2,6 @@ package com.example.onlinemedicineservice.drawermenuitems.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -11,10 +10,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.onlinemedicineservice.Model.Users;
+import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,9 +34,9 @@ public class ChangeProfile extends Fragment {
     private String name;
     private String phonenumber;
     private String userID;
-    private Users currentUser;
+    private FirebaseUserModel currentUser;
 
-    public ChangeProfile(String name,String phonenumber,Users user,String id){
+    public ChangeProfile(String name, String phonenumber, FirebaseUserModel user, String id){
 
         this.name = name;
         this.phonenumber = phonenumber;

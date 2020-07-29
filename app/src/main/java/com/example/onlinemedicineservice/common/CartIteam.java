@@ -1,16 +1,16 @@
 package com.example.onlinemedicineservice.common;
 
-import com.example.onlinemedicineservice.Model.Products;
+import com.example.onlinemedicineservice.Model.FirebaseProductModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CartIteam {
 
-    List<Products> productList = new ArrayList<>();
+    List<FirebaseProductModel> productList = new ArrayList<>();
     List<Integer> quantitylist = new ArrayList<>();
 
-    public void addProduct(Products product){
+    public void addProduct(FirebaseProductModel product){
         productList.add(product);
     }
 

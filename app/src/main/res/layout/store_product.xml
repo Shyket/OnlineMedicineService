@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="#E3215991"
-    app:cardBackgroundColor="#E3215991">
+    android:background="#FFFFFF"
+    app:cardBackgroundColor="#2C3947">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,18 +13,20 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/product_name"
+            android:id="@+id/cart_product_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textColor="#00B8D4"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/product_strength"
+            android:id="@+id/cart_product_strength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:textColor="#00B8D4"
             android:textSize="18sp" />
     </LinearLayout>
 

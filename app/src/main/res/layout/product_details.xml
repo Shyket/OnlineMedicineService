@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="#196CAD">
+    android:layout_height="match_parent"
+    android:background="#2C3947">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -17,16 +16,14 @@
         android:layout_marginEnd="10dp"
         android:background="#E3215991"
         android:elevation="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/floatingActionButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_desc"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/product_desc">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#144B75">
+            android:background="#000000">
 
             <TextView
                 android:id="@+id/whatsthecompanyText"
@@ -35,7 +32,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheCompanyText"
-                android:textColor="#F8F6F8"
+                android:textColor="#00B8D4"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +45,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="10dp"
                 android:gravity="end"
+                android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -61,7 +59,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheDosageText"
-                android:textColor="#F8F6F8"
+                android:textColor="#00B8D4"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsthecompanyText" />
@@ -87,7 +85,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheChemicalText"
-                android:textColor="#F8F6F8"
+                android:textColor="#00B8D4"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsTheDosagetext" />
@@ -113,7 +111,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheStrengthText"
-                android:textColor="#F8F6F8"
+                android:textColor="#00B8D4"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsTheChemicalText" />
@@ -140,7 +138,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/whatsThePriceText"
-                android:textColor="#F8F6F8"
+                android:textColor="#00B8D4"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -178,6 +176,7 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
+        android:textColor="#00B8D4"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -192,26 +191,65 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:text="@string/product_desc"
-        android:textColor="#F8F6F8"
+        android:textColor="#00B8D4"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/productNameText" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+
+    <Button
+        android:id="@+id/addbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:layout_marginBottom="208dp"
-        android:clickable="true"
-        android:elevation="10dp"
-        app:backgroundTint="#E3215991"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="36dp"
+        android:text="@string/addToCartString"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
-        app:srcCompat="@drawable/ic_shopping_cart_black_24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/total_price_textview" />
+
+    <Button
+        android:id="@+id/plusButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="55dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/ic_add_circle_black_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/showQuantityText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <Button
+        android:id="@+id/minusButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="52dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/ic_remove_circle_black_24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/showQuantityText"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/total_price_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showQuantityText" />
+
+    <TextView
+        android:id="@+id/showQuantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

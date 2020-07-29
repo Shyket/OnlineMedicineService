@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import com.example.onlinemedicineservice.Model.Users;
+import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
 import com.example.onlinemedicineservice.customerloginsignup.SigninActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import static com.example.onlinemedicineservice.HomeActivity.CHANGE_PROFILE_TAG;
+
 
 public class ProfileFragment extends Fragment {
 
@@ -38,10 +40,10 @@ public class ProfileFragment extends Fragment {
     private Button editButton;
     private Button deleteButton;
     private String currentUserID;
-    private Users currentUser;
+    private FirebaseUserModel currentUser;
 
     interface FetchUser{
-        void onCallBack(Users user);
+        void onCallBack(FirebaseUserModel user);
     }
 
     public ProfileFragment(){
@@ -62,39 +64,23 @@ public class ProfileFragment extends Fragment {
 
         View view  = inflater.inflate(R.layout.fragment_profile, container, false);
         assignID(view);
-        getUserInstance(new FetchUser() {
-            @Override
-            public void onCallBack(Users user) {
-                currentUser = user;
-                nameView.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
-                emailView.setText(currentUser.getEmail());
-                phoneNumberView.setText(currentUser.getPhoneNumber());
-            }
+        getUserInstance(user -> {
+            currentUser = user;
+            nameView.setText(currentUser.getFirstName() + " " + currentUser.getLastName());
+            emailView.setText(currentUser.getEmail());
+            phoneNumberView.setText(currentUser.getPhoneNumber());
         });
 
 
 
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editButtonAction();
-            }
-        });
+        editButton.setOnClickListener(view1 -> editButtonAction());
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new AlertDialog.Builder(getContext())
                         .setMessage("Confirm Delete?")
-                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                deleteAccount();
-                            }
-                        })
-                        .setNegativeButton("no", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
+                        .setPositiveButton("yes", (dialogInterface, i) -> deleteAccount())
+                        .setNegativeButton("no", (dialogInterface, i) -> {
                         })
                         .setIcon(R.drawable.ic_error_white_24dp)
                         .show();
@@ -115,7 +101,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                fetchUser.onCallBack(dataSnapshot.child(currentUserID).getValue(Users.class));
+                fetchUser.onCallBack(dataSnapshot.child(currentUserID).getValue(FirebaseUserModel.class));
 
             }
 
@@ -173,9 +159,11 @@ public class ProfileFragment extends Fragment {
 
         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.host,
 
-                new ChangeProfile(nameView.getText().toString(),phoneNumberView.getText().toString(),currentUser,currentUserID)).commit();
+                new ChangeProfile(nameView.getText().toString(),
+                                  phoneNumberView.getText().toString(),
+                                  currentUser,currentUserID),
+                CHANGE_PROFILE_TAG).commit();
 
-       // getActivity().getSupportFragmentManager().popBackStack();
     }
 
 

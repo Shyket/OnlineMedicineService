@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.onlinemedicineservice.Model.Users;
+import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -67,6 +67,7 @@ public class SignupActivity extends AppCompatActivity {
                                 sendVerificationEmail();
 
                                 if(assignUserInDatabase(auth.getCurrentUser().getUid())) {
+
                                     Toast.makeText(getApplicationContext(),
                                             "Account Created! Please Check your email for verification",
                                             Toast.LENGTH_LONG).show();
@@ -119,7 +120,7 @@ public class SignupActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference userReference = database.getReference("Users");
 
-        Users user = new Users(
+        FirebaseUserModel user = new FirebaseUserModel(
                 email.getText().toString(),
                 firstname.getText().toString(),
                 lastname.getText().toString(),

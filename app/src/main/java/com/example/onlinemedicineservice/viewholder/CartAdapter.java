@@ -4,82 +4,78 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlinemedicineservice.Model.Products;
 import com.example.onlinemedicineservice.R;
+import com.example.onlinemedicineservice.sqlDatabase.SQLProductModel;
 
 import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
-    private List<Products> product;
+    private List<SQLProductModel> SQLProductModel;
     private Context context;
-    public static List<Products> cartpProducts;
 
-
-    public CartAdapter(List<Products> product, Context context) {
-        this.product = product;
+    public CartAdapter( Context context) {
         this.context = context;
+    }
+
+    public void setProductList(List<SQLProductModel> SQLProductModel){
+        this.SQLProductModel = SQLProductModel;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_details,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_product,parent,false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.setData(product.get(position));
+        holder.setData(SQLProductModel.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return product.size();
+        if(SQLProductModel == null){
+            return 0;
+        }
+        return SQLProductModel.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public SQLProductModel getItemAt(int position){
+        return SQLProductModel.get(position);
+    }
+
+     class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView productName;
-        TextView productDosageForm;
-        TextView productCompanyName;
-        TextView productChemicalFormula;
         TextView productStrength;
         TextView productPrice;
-        Button addButton;
+        TextView productQuantity;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            productName = itemView.findViewById(R.id.productNameText);
-            productChemicalFormula = itemView.findViewById(R.id.chemicalText);
-            productCompanyName = itemView.findViewById(R.id.companyNameText);
-            productDosageForm = itemView.findViewById(R.id.dosageFormText);
-            productStrength = itemView.findViewById(R.id.strengthText);
-            productPrice = itemView.findViewById(R.id.priceText);
-          //  addButton = itemView.findViewById(R.id.addButton);
+            productName = itemView.findViewById(R.id.cart_product_name);
+            productStrength = itemView.findViewById(R.id.cart_product_strength);
+            productPrice = itemView.findViewById(R.id.cart_product_price);
+            productQuantity = itemView.findViewById(R.id.cart_product_quantity);
 
         }
 
-        void setData(final Products product){
+        void setData(final SQLProductModel SQLProductModel){
 
-            productName.setText(product.getProductName());
-            productCompanyName.setText(product.getCompanyId());
-            productDosageForm.setText(product.getDosageForm());
-            productStrength.setText(product.getStrength());
-            productChemicalFormula.setText(product.getChemicalFormula());
-            productPrice.setText(product.getPrice());
-
-
-
+            productName.setText(SQLProductModel.getProductName());
+            productStrength.setText(SQLProductModel.getStrength());
+            productPrice.setText(SQLProductModel.getPrice());
+            productQuantity.setText(String.valueOf(SQLProductModel.getSelectedQuantity()));
         }
 
     }

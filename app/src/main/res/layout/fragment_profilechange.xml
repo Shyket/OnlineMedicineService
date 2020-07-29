@@ -4,7 +4,7 @@
     android:id="@+id/editProfileLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#196CAD"
+    android:background="#2C3947"
     android:orientation="vertical">
 
     <TextView
@@ -84,7 +84,7 @@
         android:layout_height="56dp"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:background="#093B63"
+        android:background="#2A4B50"
         android:text="@string/commitChanges"
         android:textSize="18sp" />
 

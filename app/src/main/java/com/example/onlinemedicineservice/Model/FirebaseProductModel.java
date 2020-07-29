@@ -3,7 +3,7 @@ package com.example.onlinemedicineservice.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Products implements Parcelable {
+public class FirebaseProductModel implements Parcelable {
 
     private String chemicalFormula;
     private String companyId;
@@ -13,13 +13,10 @@ public class Products implements Parcelable {
     private String strength;
     private String quantity;
     private String productId;
-    private int selectedQuantity;
 
-    public Products() {
-    }
+    public FirebaseProductModel(String chemicalFormula, String companyId, String dosageForm, String price, String productName,
+                                String quantity, String strength) {
 
-    public Products(String chemicalFormula, String companyId, String dosageForm, String price, String productName, String quantity,
-                    String strength) {
         setChemicalFormula(chemicalFormula);
         setCompanyId(companyId);
         setDosageForm(dosageForm);
@@ -29,7 +26,7 @@ public class Products implements Parcelable {
         setQuantity(quantity);
     }
 
-    protected Products(Parcel in) {
+    private FirebaseProductModel(Parcel in) {
         chemicalFormula = in.readString();
         companyId = in.readString();
         dosageForm = in.readString();
@@ -38,8 +35,8 @@ public class Products implements Parcelable {
         strength = in.readString();
         quantity = in.readString();
         productId = in.readString();
-        selectedQuantity = in.readInt();
     }
+
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
@@ -51,95 +48,76 @@ public class Products implements Parcelable {
         dest.writeString(strength);
         dest.writeString(quantity);
         dest.writeString(productId);
-        dest.writeInt(selectedQuantity);
     }
-
     @Override
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<Products> CREATOR = new Creator<Products>() {
+    public static final Creator<FirebaseProductModel> CREATOR = new Creator<FirebaseProductModel>() {
         @Override
-        public Products createFromParcel(Parcel in) {
-            return new Products(in);
+        public FirebaseProductModel createFromParcel(Parcel in) {
+            return new FirebaseProductModel(in);
         }
 
         @Override
-        public Products[] newArray(int size) {
-            return new Products[size];
+        public FirebaseProductModel[] newArray(int size) {
+            return new FirebaseProductModel[size];
         }
     };
 
-    public int getSelectedQuantity() {
-        return selectedQuantity;
-    }
-
-    public void setSelectedQuantity(int selectedQuantity) {
-        this.selectedQuantity = selectedQuantity;
-    }
 
     public String getQuantity() {
         return quantity;
     }
-
-    public void setQuantity(String quantity) {
+    private void setQuantity(String quantity) {
         this.quantity = quantity;
     }
-
 
     public String getChemicalFormula() {
         return chemicalFormula;
     }
-
-    public void setChemicalFormula(String chemicalFormula) {
+    private void setChemicalFormula(String chemicalFormula) {
         this.chemicalFormula = chemicalFormula;
     }
 
     public String getCompanyId() {
         return companyId;
     }
-
-    public void setCompanyId(String companyId) {
+    private void setCompanyId(String companyId) {
         this.companyId = companyId;
     }
 
     public String getDosageForm() {
         return dosageForm;
     }
-
-    public void setDosageForm(String dosageForm) {
+    private void setDosageForm(String dosageForm) {
         this.dosageForm = dosageForm;
     }
 
     public String getPrice() {
         return price;
     }
-
-    public void setPrice(String price) {
+    private void setPrice(String price) {
         this.price = price;
     }
 
     public String getProductName() {
         return productName;
     }
-
-    public void setProductName(String productName) {
+    private void setProductName(String productName) {
         this.productName = productName;
     }
 
     public String getStrength() {
         return strength;
     }
-
-    public void setStrength(String strength) {
+    private void setStrength(String strength) {
         this.strength = strength;
     }
 
     public String getProductId() {
         return productId;
     }
-
     public void setProductId(String productId) {
         this.productId = productId;
     }

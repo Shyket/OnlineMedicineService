@@ -4,7 +4,7 @@ package com.example.onlinemedicineservice.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Users implements Parcelable {
+public class FirebaseUserModel implements Parcelable {
 
     private String password;
     private String email;
@@ -15,11 +15,11 @@ public class Users implements Parcelable {
 
 
 
-    public Users() {
+    public FirebaseUserModel() {
     }
 
 
-    public Users(String email, String firtsName, String lastName, String password, String phoneNumber) {
+    public FirebaseUserModel(String email, String firtsName, String lastName, String password, String phoneNumber) {
 
         setFirstName(firtsName);
         setLastName(lastName);
@@ -30,7 +30,7 @@ public class Users implements Parcelable {
     }
 
 
-    protected Users(Parcel in) {
+    protected FirebaseUserModel(Parcel in) {
         password = in.readString();
         email = in.readString();
         firstName = in.readString();
@@ -39,15 +39,15 @@ public class Users implements Parcelable {
         Uid = in.readString();
     }
 
-    public static final Creator<Users> CREATOR = new Creator<Users>() {
+    public static final Creator<FirebaseUserModel> CREATOR = new Creator<FirebaseUserModel>() {
         @Override
-        public Users createFromParcel(Parcel in) {
-            return new Users(in);
+        public FirebaseUserModel createFromParcel(Parcel in) {
+            return new FirebaseUserModel(in);
         }
 
         @Override
-        public Users[] newArray(int size) {
-            return new Users[size];
+        public FirebaseUserModel[] newArray(int size) {
+            return new FirebaseUserModel[size];
         }
     };
 
