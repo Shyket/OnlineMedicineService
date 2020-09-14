@@ -32,7 +32,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheCompanyText"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheDosageText"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsthecompanyText" />
@@ -85,7 +85,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheChemicalText"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsTheDosagetext" />
@@ -111,7 +111,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:text="@string/whatsTheStrengthText"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whatsTheChemicalText" />
@@ -138,7 +138,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:text="@string/whatsThePriceText"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -191,7 +191,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:text="@string/product_desc"
-        android:textColor="#00B8D4"
+        android:textColor="#4757AE"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -201,8 +201,8 @@
 
     <Button
         android:id="@+id/addbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="74dp"
         android:layout_marginTop="36dp"
         android:text="@string/addToCartString"
         app:layout_constraintEnd_toEndOf="parent"

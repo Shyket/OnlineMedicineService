@@ -6,32 +6,27 @@ import android.os.Parcelable;
 
 public class FirebaseUserModel implements Parcelable {
 
-    private String password;
     private String email;
     private String firstName;
     private String lastName;
     private String phoneNumber;
     private String Uid;
 
-
-
     public FirebaseUserModel() {
     }
 
 
-    public FirebaseUserModel(String email, String firtsName, String lastName, String password, String phoneNumber) {
+    public FirebaseUserModel(String email, String firtsName, String lastName , String phoneNumber) {
 
         setFirstName(firtsName);
         setLastName(lastName);
         setEmail(email);
-        setPassword(password);
         setPhoneNumber(phoneNumber);
 
     }
 
 
     protected FirebaseUserModel(Parcel in) {
-        password = in.readString();
         email = in.readString();
         firstName = in.readString();
         lastName = in.readString();
@@ -51,13 +46,7 @@ public class FirebaseUserModel implements Parcelable {
         }
     };
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getEmail() {
         return email;
@@ -107,7 +96,6 @@ public class FirebaseUserModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(password);
         dest.writeString(email);
         dest.writeString(firstName);
         dest.writeString(lastName);

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:background="#FFFFFF"
-    app:cardBackgroundColor="#2C3947">
+    app:cardBackgroundColor="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,15 +15,15 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/cart_product_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -32,7 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp" />
 
             <TextView
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp" />
 
 
@@ -59,7 +59,7 @@
                 android:layout_gravity="end"
                 android:layout_margin="5dp"
                 android:gravity="end"
-                android:textColor="#00B8D4"
+                android:textColor="#4757AE"
                 android:textSize="18sp" />
 
         </LinearLayout>

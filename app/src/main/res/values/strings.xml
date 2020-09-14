@@ -45,4 +45,6 @@
     <string name="inStock">In Stock</string>
     <string name="product_desc">Product Description:</string>
     <string name="confirm_order">Proceed To Order</string>
+    <string name="resetPassword">Reset Password</string>
+    <string name="createNewAccount">CREATE NEW ACCOUNT</string>
 </resources>
