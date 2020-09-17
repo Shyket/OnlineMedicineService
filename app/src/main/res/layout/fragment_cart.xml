@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2C3947">
+    android:background="#FFFFFF">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchedproduct_recycler_view"
@@ -23,10 +23,14 @@
 
     <Button
         android:id="@+id/CONFIRM_BUTTON"
-        android:layout_width="229dp"
-        android:layout_height="66dp"
+        android:layout_width="337dp"
+        android:layout_height="65dp"
         android:layout_marginBottom="36dp"
+        android:background="#4757AE"
         android:text="@string/confirm_order"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

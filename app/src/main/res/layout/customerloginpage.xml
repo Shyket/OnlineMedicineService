@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".customerloginsignup.SigninActivity">
+    tools:context=".customerloginsignup.SignInActivity">
 
     <EditText
         android:id="@+id/emailText"
@@ -17,14 +17,14 @@
         android:ems="10"
         android:hint="Email Address"
         android:inputType="textEmailAddress"
-        android:textColor="#1D83BA"
-        android:textColorHint="#1D83BA"
+        android:textColor="#16192E"
+        android:textColorHint="#4757AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
+        app:layout_constraintVertical_bias="0.368" />
 
     <EditText
         android:id="@+id/passwordText"
@@ -38,13 +38,14 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:password="true"
-        android:textColorHint="#1D83BA"
+        android:textColor="#16192E"
+        android:textColorHint="#4757AE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailText"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/textView"
@@ -52,9 +53,9 @@
         android:layout_height="57dp"
         android:gravity="center"
         android:paddingLeft="10dp"
-        android:text="@string/customerloginpageheader"
+        android:text="@string/app_name"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@android:color/primary_text_dark_nodisable"
+        android:textColor="#4757AE"
         android:textColorHighlight="#00B8D4"
         android:textColorHint="#00B8D4"
         android:textColorLink="#00B8D4"
@@ -71,36 +72,16 @@
         android:id="@+id/loginButton"
         android:layout_width="330dp"
         android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:background="#F3F4F6"
+        android:layout_marginTop="40dp"
+        android:background="#4757AE"
         android:elevation="10dp"
         android:text="LOGIN"
-        android:textColor="#1D83BA"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.073" />
-
-    <TextView
-        android:id="@+id/clickHere"
-        android:layout_width="323dp"
-        android:layout_height="62dp"
-        android:autoLink="all|none"
-        android:clickable="false"
-        android:gravity="center"
-        android:text="@string/createac"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textColor="#1D83BA"
-        android:textColorLink="#162935"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.384" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
 
     <TextView
         android:id="@+id/textView3"
@@ -109,14 +90,45 @@
         android:elevation="15dp"
         android:gravity="center"
         android:text="@string/login"
-        android:textColor="#1D83BA"
+        android:textColor="#4757AE"
         android:textColorHighlight="#00B8D4"
         android:textColorHint="#00B8D4"
         android:textColorLink="#00B8D4"
         android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/emailText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.935" />
+        app:layout_constraintVertical_bias="0.623" />
+
+    <Button
+        android:id="@+id/resetPasswordButtonID"
+        android:layout_width="175dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="50dp"
+        android:background="@android:color/transparent"
+        android:text="@string/resetPassword"
+        android:textColor="#4757AE"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/createAccountButtonID"
+        android:layout_width="218dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:text="@string/createNewAccount"
+        android:textColor="#4757AE"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resetPasswordButtonID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

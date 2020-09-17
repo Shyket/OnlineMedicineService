@@ -1,6 +1,6 @@
 package com.example.onlinemedicineservice.drawermenuitems.store;
-
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,29 +9,28 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.onlinemedicineservice.Model.FirebaseProductModel;
 import com.example.onlinemedicineservice.ProductDetails;
 import com.example.onlinemedicineservice.R;
+import com.example.onlinemedicineservice.sqlDatabase.ProductViewModel;
+import com.example.onlinemedicineservice.sqlDatabase.SuggestionModel;
 import com.example.onlinemedicineservice.viewholder.StoreAdapter;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.example.onlinemedicineservice.HomeActivity.PRODUCT_DETAILS_TAG;
-import static com.example.onlinemedicineservice.customerloginsignup.SigninActivity.SUGGETION_FOR_SEARCH;
-
 
 public class StoreFragment extends Fragment implements StoreAdapter.onProductClick{
 
@@ -42,7 +41,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
     private static ArrayList<FirebaseProductModel> savedProductList = new ArrayList<>();
     private List<String> searchSuggetions;
     private ArrayAdapter<String> adapter;
-    private ListView suggestionList;
+
+    ProductViewModel productViewModel;
 
     public StoreFragment(){}
 
@@ -50,6 +50,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView  =  inflater.inflate(R.layout.fragment_store, container, false);
         initializeUIComponent(rootView);
+
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -60,43 +62,70 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
         }
 
         searchSuggetions = new ArrayList<>();
-        searchSuggetions = SUGGETION_FOR_SEARCH;
+        searchSuggetions = productViewModel.getAllSuggestion();
         if(searchSuggetions == null){
             Toast.makeText(getContext(), "Null", Toast.LENGTH_SHORT).show();
         }
         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,searchSuggetions);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
+
             @Override
             public boolean onQueryTextSubmit(String query) {
-                suggestionList.setAdapter(null);
+
                 searchTheQuery(query);
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String s) {
                 if(s.isEmpty()){
-                    suggestionList.setAdapter(null);
+
                 }else {
-                    adapter.getFilter().filter(s);
-                    suggestionList.setAdapter(adapter);
+                    Query query = dbref.orderByChild("productname").startAt(s);
+                    query.addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                            searchSuggetions.add(dataSnapshot.getValue(String.class));
+
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+
+                    });
+
+
                 }
+
+                adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,searchSuggetions);
+
                 return false;
             }
         });
 
-        suggestionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                searchView.setQuery((String)suggestionList.getItemAtPosition(position),false);
-                suggestionList.setAdapter(null);
-            }
-        });
 
 
         return rootView;
     }
-
 
     @Override
     public void onDestroyView() {
@@ -109,7 +138,7 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
 
         recyclerView = view.findViewById(R.id.searchedproduct_recycler_view);
         searchView =  view.findViewById(R.id.searchviewId);
-        suggestionList = view.findViewById(R.id.suggetion_list_view);
+
 
     }
 

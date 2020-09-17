@@ -1,53 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#88AED6"
+    android:background="#FFFFFF"
+    android:fadingEdge="vertical"
+    android:orientation="vertical"
     tools:context=".drawermenuitems.store.StoreFragment">
 
 
     <SearchView
         android:id="@+id/searchviewId"
-        android:layout_width="382dp"
-        android:layout_height="65dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#4757AE"
+        android:elevation="10dp"
         android:fadingEdge="horizontal"
+        android:focusedByDefault="true"
         android:gravity="center"
+        android:hapticFeedbackEnabled="false"
         android:iconifiedByDefault="false"
+        android:paddingTop="5dp"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:queryHint="@string/queryHint"
         android:requiresFadingEdge="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:searchIcon="@drawable/ic_white_search_24"
+        android:textAlignment="center" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchedproduct_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:weightSum="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchviewId">
-
-        <ListView
-            android:id="@+id/suggetion_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="40dp"
-            android:divider="@null"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/searchedproduct_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="12dp" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="12dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
