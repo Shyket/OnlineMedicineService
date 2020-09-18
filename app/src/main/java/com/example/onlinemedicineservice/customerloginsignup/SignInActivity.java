@@ -1,17 +1,9 @@
 package com.example.onlinemedicineservice.customerloginsignup;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.onlinemedicineservice.HomeActivity;
 import com.example.onlinemedicineservice.PasswordReset;
