@@ -13,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Objects;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignupActivity extends AppCompatActivity {
 
     private Button signUpButton;
     private TextInputEditText firstNameText;
@@ -62,7 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 }
 
                         } else {
-                            Toast.makeText(SignUpActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
+                            Toast.makeText(SignupActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
                                     Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -86,10 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void navigateToSignInPage() {
-        Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+        Intent intent = new Intent(getApplicationContext(), SigninActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-        SignUpActivity.this.finish();
+        SignupActivity.this.finish();
     }
 
     private boolean assignUserInOnlineDatabase(String Uid) {

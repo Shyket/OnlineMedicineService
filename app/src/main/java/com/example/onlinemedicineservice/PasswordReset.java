@@ -3,11 +3,6 @@ package com.example.onlinemedicineservice;
 import android.content.Context;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
-import com.example.onlinemedicineservice.customerloginsignup.SignInActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;

@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
-import com.example.onlinemedicineservice.customerloginsignup.SignInActivity;
+import com.example.onlinemedicineservice.customerloginsignup.SigninActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -144,7 +144,7 @@ public class ProfileFragment extends Fragment {
             user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
-                    Intent intent = new Intent(getContext(), SignInActivity.class);
+                    Intent intent = new Intent(getContext(), SigninActivity.class);
                     startActivity(intent);
                 }
             });

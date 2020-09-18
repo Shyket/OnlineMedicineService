@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.onlinemedicineservice.customerloginsignup.SignInActivity;
+import com.example.onlinemedicineservice.customerloginsignup.SigninActivity;
 import com.example.onlinemedicineservice.drawermenuitems.cart.CartFragment;
 import com.example.onlinemedicineservice.drawermenuitems.profile.ChangeProfile;
 import com.example.onlinemedicineservice.drawermenuitems.profile.ProfileFragment;
@@ -94,7 +94,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseAuth.getInstance().signOut();
-                        Intent intent  = new Intent(getApplicationContext(), SignInActivity.class);
+                        Intent intent  = new Intent(getApplicationContext(), SigninActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         HomeActivity.this.finish();

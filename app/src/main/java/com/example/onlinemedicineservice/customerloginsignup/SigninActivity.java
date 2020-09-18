@@ -1,17 +1,9 @@
 package com.example.onlinemedicineservice.customerloginsignup;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.onlinemedicineservice.HomeActivity;
 import com.example.onlinemedicineservice.PasswordReset;
@@ -20,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 
-public class SignInActivity extends AppCompatActivity {
+public class SigninActivity extends AppCompatActivity {
 
     private EditText passwordText;
     private EditText emailText;
@@ -52,7 +44,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onResume();
         loginButton.setOnClickListener(view -> validateUser());
         createAccountButton.setOnClickListener(view -> {
-            Intent intent = new Intent(this, SignUpActivity.class);
+            Intent intent = new Intent(this, SignupActivity.class);
             startActivity(intent);
         });
         resetPasswordButton.setOnClickListener(view -> {
@@ -112,7 +104,7 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void navigateToHomePage() {
-        Intent intent  = new Intent(SignInActivity.this, HomeActivity.class);
+        Intent intent  = new Intent(SigninActivity.this, HomeActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
                 Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
