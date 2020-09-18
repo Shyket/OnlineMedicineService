@@ -1,4 +1,4 @@
-package com.example.onlinemedicineservice.viewholder;
+package com.example.onlinemedicineservice.Adaptar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -63,8 +63,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            productName = itemView.findViewById(R.id.cart_product_name);
-            productStrength = itemView.findViewById(R.id.cart_product_strength);
+            productName = itemView.findViewById(R.id.searchedProductName);
+            productStrength = itemView.findViewById(R.id.searchedProductStrength);
             productPrice = itemView.findViewById(R.id.cart_product_price);
             productQuantity = itemView.findViewById(R.id.cart_product_quantity);
 
@@ -74,8 +74,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
             productName.setText(SQLProductModel.getProductName());
             productStrength.setText(SQLProductModel.getStrength());
-            productPrice.setText(SQLProductModel.getPrice());
-            productQuantity.setText(String.valueOf(SQLProductModel.getSelectedQuantity()));
+            productPrice.setText(SQLProductModel.getPrice() + " TK");
+            productQuantity.setText(String.valueOf(SQLProductModel.getSelectedQuantity()) + " Pieces");
         }
 
     }

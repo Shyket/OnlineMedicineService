@@ -47,4 +47,16 @@
     <string name="confirm_order">Proceed To Order</string>
     <string name="resetPassword">Reset Password</string>
     <string name="createNewAccount">CREATE NEW ACCOUNT</string>
+    <string name="ConfirmOrderInfo">Confirm Order Info</string>
+    <string name="YourProduct">Your Products : </string>
+    <string name="ContactInfo">"Contact Information : "</string>
+    <string name="YourPhoneNumber"> "Phone Number :"  </string>
+    <string name="Address">"Address : "</string>
+    <string name="PaymentMethod"> "Payment Method : "</string>
+    <string name="Bkash">Bkash Payment</string>
+    <string name="CashOnDelivery">Cash On Delivery</string>
+    <string name="TransactionID">Transaction ID</string>
+    <string name="transactionNumber">Transaction Number</string>
+    <string name="transactionnumber">"Your Bkash Number "</string>
+    <string name="order_history">History</string>
 </resources>

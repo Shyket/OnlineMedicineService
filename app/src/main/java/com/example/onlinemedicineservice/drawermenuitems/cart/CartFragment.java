@@ -15,48 +15,47 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.onlinemedicineservice.Model.FirebaseOrderModel;
+import com.example.onlinemedicineservice.OrderConfirmation;
 import com.example.onlinemedicineservice.R;
 import com.example.onlinemedicineservice.sqlDatabase.SQLProductModel;
-import com.example.onlinemedicineservice.sqlDatabase.ProductViewModel;
-import com.example.onlinemedicineservice.viewholder.CartAdapter;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.example.onlinemedicineservice.sqlDatabase.DBConnector;
+import com.example.onlinemedicineservice.Adaptar.CartAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+import static com.example.onlinemedicineservice.HomeActivity.ORDER_CONFIRMATION_TAG;
 
 public class CartFragment extends Fragment{
 
     private RecyclerView recyclerView;
     private Button confirmButton;
-    private ProductViewModel productViewModel;
+    private DBConnector connector;
+    private TextView emptyCartText;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_cart, container, false);
 
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        connector = new ViewModelProvider(this).get(DBConnector.class);
         confirmButton = root.findViewById(R.id.CONFIRM_BUTTON);
         recyclerView = root.findViewById(R.id.searchedproduct_recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        emptyCartText = root.findViewById(R.id.availableText);
 
         CartAdapter adapter = new CartAdapter(getContext());
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
-        List<SQLProductModel> SQLProductModelList = productViewModel.getAllProduct();
+        List<SQLProductModel> SQLProductModelList = connector.getAllProduct();
 
         if(SQLProductModelList != null){
             adapter.setProductList(SQLProductModelList);
         }else{
             Toast.makeText(getContext(), "Empty!", Toast.LENGTH_SHORT).show();
+        }
+
+        if(adapter.getItemCount() == 0){
+            emptyCartText.setText("Your Cart is Empty!!");
         }
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
@@ -72,39 +71,37 @@ public class CartFragment extends Fragment{
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
-                SQLProductModelList.remove(viewHolder.getAdapterPosition());
-                productViewModel.deleteProduct(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(getContext(), "no text", Toast.LENGTH_SHORT).show();
 
+                SQLProductModel product = SQLProductModelList.get(viewHolder.getAdapterPosition());
+                SQLProductModelList.remove(viewHolder.getAdapterPosition());
+                connector.deleteProduct(product);
+                if(SQLProductModelList != null) {
+                    recyclerView.setAdapter(adapter);
+                    adapter.setProductList(SQLProductModelList);
+                }
             }
         }).attachToRecyclerView(recyclerView);
 
         confirmButton.setOnClickListener(v -> {
 
 
+            if(adapter.getItemCount() == 0){
+                Toast.makeText(getContext(), "No Item in The Cart!", Toast.LENGTH_LONG).show();
+            }else {
 
-            List<String> productIDs = new ArrayList<>();
-            for(int i = 0; i<SQLProductModelList.size(); i++){
-                productIDs.add(SQLProductModelList.get(i).getProductId());
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.host,
+
+                        new OrderConfirmation(SQLProductModelList), ORDER_CONFIRMATION_TAG).commit();
             }
 
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Orders");
-
-            ref.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                    .setValue(new FirebaseOrderModel(java.time.LocalDateTime.now(),
-                                                    FirebaseAuth.getInstance().getCurrentUser().getUid(),
-                                                     "dd","01724156717",productIDs,
-                                                     9.0,7.8,"1200.8",
-                                                     "cashOn Delivary"));
         });
 
 
         return root;
     }
 
-    private String generateOrderId() {
 
-        return null;
-    }
 
 
 }

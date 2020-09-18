@@ -1,17 +1,9 @@
-package com.example.onlinemedicineservice.customerloginsignup;
+package com.example.onlinemedicineservice.CustomerAuthentication;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.method.LinkMovementMethod;
-import android.text.style.ClickableSpan;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.example.onlinemedicineservice.HomeActivity;
 import com.example.onlinemedicineservice.PasswordReset;
@@ -32,7 +24,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.customerloginpage);
+        setContentView(R.layout.login);
 
         passwordReset = new PasswordReset();
 
@@ -56,11 +48,11 @@ public class SignInActivity extends AppCompatActivity {
             startActivity(intent);
         });
         resetPasswordButton.setOnClickListener(view -> {
-           if(emailText.getText().toString().isEmpty()){
-               Toast.makeText(getApplicationContext(), "Inappropriate Email Address!",
-                       Toast.LENGTH_SHORT).show();
-               return;
-           }
+            if(emailText.getText().toString().isEmpty()){
+                Toast.makeText(getApplicationContext(), "Inappropriate Email Address!",
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
             passwordReset.resetPassword(this, emailText.getText().toString());
         });
     }

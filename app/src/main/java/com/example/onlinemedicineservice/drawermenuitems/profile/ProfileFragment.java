@@ -1,5 +1,4 @@
 package com.example.onlinemedicineservice.drawermenuitems.profile;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +11,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
-import com.example.onlinemedicineservice.customerloginsignup.SignInActivity;
+import com.example.onlinemedicineservice.CustomerAuthentication.SignInActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +29,7 @@ import static com.example.onlinemedicineservice.HomeActivity.CHANGE_PROFILE_TAG;
 
 public class ProfileFragment extends Fragment {
 
-    private ProfileViewModel profileViewModel;
+
 
     private TextView emailView;
     private TextView phoneNumberView;
@@ -58,8 +56,7 @@ public class ProfileFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel =
-                ViewModelProviders.of(this).get(ProfileViewModel.class);
+
 
         View view  = inflater.inflate(R.layout.fragment_profile, container, false);
         assignID(view);
@@ -73,19 +70,13 @@ public class ProfileFragment extends Fragment {
 
 
         editButton.setOnClickListener(view1 -> editButtonAction());
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new AlertDialog.Builder(getContext())
-                        .setMessage("Confirm Delete?")
-                        .setPositiveButton("yes", (dialogInterface, i) -> deleteAccount())
-                        .setNegativeButton("no", (dialogInterface, i) -> {
-                        })
-                        .setIcon(R.drawable.ic_error_white_24dp)
-                        .show();
-
-            }
-        });
+        deleteButton.setOnClickListener(view12 -> new AlertDialog.Builder(getContext())
+                .setMessage("Confirm Delete?")
+                .setPositiveButton("yes", (dialogInterface, i) -> deleteAccount())
+                .setNegativeButton("no", (dialogInterface, i) -> {
+                })
+                .setIcon(R.drawable.ic_error_white_24dp)
+                .show());
 
         return view;
     }
@@ -164,6 +155,8 @@ public class ProfileFragment extends Fragment {
                 CHANGE_PROFILE_TAG).commit();
 
     }
+
+
 
 
 

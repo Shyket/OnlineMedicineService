@@ -29,9 +29,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
-        android:layout_width="400dp"
-        android:layout_height="83dp"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="10"
         app:errorEnabled="true"
@@ -41,8 +44,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name1Edittext"
-            android:layout_width="422dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="#4757AE"
             android:ems="10"
             android:hint="First Name"
             android:inputType="textPersonName"
@@ -55,9 +59,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout2"
-        android:layout_width="405dp"
-        android:layout_height="77dp"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="10"
         app:errorEnabled="true"
@@ -68,7 +75,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/name2Edittext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#4757AE"
             android:ems="10"
             android:hint="Last Name"
             android:inputType="textPersonName"
@@ -83,9 +91,12 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout3"
-        android:layout_width="417dp"
-        android:layout_height="94dp"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:elevation="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="11"
         app:errorEnabled="true"
@@ -96,7 +107,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/profilephoneNumberEdittext"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#4757AE"
             android:ems="10"
             android:hint="@string/phone_number"
             android:inputType="phone"
@@ -108,18 +120,17 @@
 
     <Button
         android:id="@+id/commitchangeButton"
-        android:layout_width="332dp"
-        android:layout_height="65dp"
+        android:layout_width="300dp"
+        android:layout_height="56dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="40dp"
-        android:layout_marginBottom="244dp"
         android:background="#4757AE"
         android:text="@string/commitChanges"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

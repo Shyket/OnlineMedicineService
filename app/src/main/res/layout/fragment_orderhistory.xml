@@ -21,18 +21,8 @@
             android:layout_gravity="center_horizontal"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/availableText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="5dp"
-                android:gravity="center"
-                android:textColor="#4757AE"
-                android:textSize="32sp" />
-
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/searchedproduct_recycler_view"
+                android:id="@+id/orderRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -42,21 +32,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/CONFIRM_BUTTON"
-        android:layout_width="250dp"
-        android:layout_height="56dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dp"
-        android:background="#4757AE"
-        android:gravity="center"
-        android:text="@string/confirm_order"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,7 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface ProductDAO {
+public interface DatabaseDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertProduct(SQLProductModel SQLProductModel);
@@ -24,11 +24,16 @@ public interface ProductDAO {
     void deleteAllProduct();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertSuggestion(SuggestionModel suggestionModel);
+    void insertOrder(SQLOrderModel SQLOrderModel);
 
-    @Query("SELECT * FROM suggestion_table")
-    List<String> getAllSuggestion();
+    @Query("SELECT * FROM Order_table")
+    List<SQLOrderModel> getALlOrder();
 
+    @Delete
+    void deleteOrder(SQLOrderModel SQLOrderModel);
+
+    @Query("DELETE FROM Order_table")
+    void deleteAllOrder();
 
 
 }

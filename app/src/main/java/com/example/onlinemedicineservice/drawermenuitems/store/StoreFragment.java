@@ -1,32 +1,22 @@
 package com.example.onlinemedicineservice.drawermenuitems.store;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.onlinemedicineservice.Model.FirebaseProductModel;
 import com.example.onlinemedicineservice.ProductDetails;
 import com.example.onlinemedicineservice.R;
-import com.example.onlinemedicineservice.sqlDatabase.ProductViewModel;
-import com.example.onlinemedicineservice.sqlDatabase.SuggestionModel;
-import com.example.onlinemedicineservice.viewholder.StoreAdapter;
-import com.google.firebase.database.ChildEventListener;
+import com.example.onlinemedicineservice.Adaptar.StoreAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,13 +26,8 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
 
     private SearchView searchView;
     private RecyclerView recyclerView;
-    private String searchViewText;
     private ArrayList<FirebaseProductModel> productList = new ArrayList<FirebaseProductModel>();
     private static ArrayList<FirebaseProductModel> savedProductList = new ArrayList<>();
-    private List<String> searchSuggetions;
-    private ArrayAdapter<String> adapter;
-
-    ProductViewModel productViewModel;
 
     public StoreFragment(){}
 
@@ -50,9 +35,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView  =  inflater.inflate(R.layout.fragment_store, container, false);
         initializeUIComponent(rootView);
-
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
-
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -61,64 +43,42 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
             setAdapterForRecycler(productList);
         }
 
-        searchSuggetions = new ArrayList<>();
-        searchSuggetions = productViewModel.getAllSuggestion();
-        if(searchSuggetions == null){
-            Toast.makeText(getContext(), "Null", Toast.LENGTH_SHORT).show();
-        }
-        adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,searchSuggetions);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference referenceOfProduct = database.getReference("Products");
+        productList = new ArrayList<>();
+
+        referenceOfProduct.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    for(DataSnapshot ds: dataSnapshot.getChildren()){
+                        FirebaseProductModel product = getProductsOnSearch(ds);
+                        productList.add(product);
+                    }
+                }
+                setAdapterForRecycler(productList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-            DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
 
             @Override
             public boolean onQueryTextSubmit(String query) {
 
-                searchTheQuery(query);
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String s) {
-                if(s.isEmpty()){
 
-                }else {
-                    Query query = dbref.orderByChild("productname").startAt(s);
-                    query.addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                            searchSuggetions.add(dataSnapshot.getValue(String.class));
+                    searchTheQuery(s);
 
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-
-                    });
-
-
-                }
-
-                adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,searchSuggetions);
-
-                return false;
+                return true;
             }
         });
 
@@ -132,8 +92,6 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
         super.onDestroyView();
         savedProductList = productList;
     }
-
-
     private void initializeUIComponent(View view) {
 
         recyclerView = view.findViewById(R.id.searchedproduct_recycler_view);
@@ -144,38 +102,17 @@ public class StoreFragment extends Fragment implements StoreAdapter.onProductCli
 
     private void searchTheQuery(String query){
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference referenceOfProduct = database.getReference("Products");
-        productList = new ArrayList<>();
+        ArrayList<FirebaseProductModel> myList = new ArrayList<>();
+        if(productList != null) {
+            for (FirebaseProductModel product : productList) {
 
-        referenceOfProduct.orderByChild("productname").equalTo(query).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                FirebaseProductModel product = getProductsOnSearch(dataSnapshot);
-                product.setProductId(dataSnapshot.getKey());
-                productList.add(product);
-                setAdapterForRecycler(productList);
-
+                if (product.getProductName().toLowerCase().contains(query.toLowerCase())) {
+                    myList.add(product);
+                }
             }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+            setAdapterForRecycler(myList);
+        }
 
 
     }

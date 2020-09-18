@@ -20,14 +20,13 @@
             android:theme="@style/NoActionBar"
             android:label="Store"
             />
-        <activity android:name="com.example.onlinemedicineservice.customerloginsignup.SignInActivity">
+        <activity android:name="com.example.onlinemedicineservice.CustomerAuthentication.SignInActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         </activity>
-        <activity android:name="com.example.onlinemedicineservice.customerloginsignup.SignUpActivity"/>
-        <activity android:name="com.example.onlinemedicineservice.MainActivity"/>
+        <activity android:name="com.example.onlinemedicineservice.CustomerAuthentication.SignUpActivity"/>
     </application>
 
 </manifest>

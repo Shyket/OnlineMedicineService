@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.onlinemedicineservice.customerloginsignup.SignInActivity;
+import com.example.onlinemedicineservice.CustomerAuthentication.SignInActivity;
+import com.example.onlinemedicineservice.drawermenuitems.Order_History.OrderHistoryFragment;
 import com.example.onlinemedicineservice.drawermenuitems.cart.CartFragment;
 import com.example.onlinemedicineservice.drawermenuitems.profile.ChangeProfile;
 import com.example.onlinemedicineservice.drawermenuitems.profile.ProfileFragment;
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     public final static String CHANGE_PROFILE_TAG = "profilechange";
     public final static String PRODUCT_DETAILS_TAG = "productdetails";
+    public final static String ORDER_CONFIRMATION_TAG = "orderconfirmation";
     private DrawerLayout drawer;
     private NavigationView navigationView;
     private  long backPressedTime;
@@ -64,7 +66,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         item.setChecked(true);
         drawer.closeDrawers();
         switch(item.getItemId()){
-
             case R.id.nav_store:
                 getSupportFragmentManager().beginTransaction().replace(R.id.host, new StoreFragment()).commit();
                 toolbar.setTitle("Store");
@@ -77,6 +78,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_cart:
                 getSupportFragmentManager().beginTransaction().replace(R.id.host, new CartFragment()).commit();
                 toolbar.setTitle("Cart");
+                break;
+            case R.id.nav_history:
+                getSupportFragmentManager().beginTransaction().replace(R.id.host, new OrderHistoryFragment()).commit();
+                toolbar.setTitle("Order History");
                 break;
             case R.id.nav_logout:
                 logoutPressed();
@@ -121,17 +126,26 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     .findFragmentByTag(CHANGE_PROFILE_TAG);
             ProductDetails productDetailsFragment = (ProductDetails) getSupportFragmentManager()
                     .findFragmentByTag(PRODUCT_DETAILS_TAG);
+            OrderConfirmation orderConfirmation = (OrderConfirmation) getSupportFragmentManager()
+                    .findFragmentByTag(ORDER_CONFIRMATION_TAG);
 
             if(productDetailsFragment != null && productDetailsFragment.isVisible()){
                 getSupportFragmentManager().beginTransaction().replace(R.id.host,
                         new StoreFragment()).commit();
+            }
+            else if(orderConfirmation != null && orderConfirmation.isVisible()){
+                getSupportFragmentManager().beginTransaction().replace(R.id.host,
+                        new CartFragment()).commit();
+                toolbar.setTitle("Cart");
+
             }
             else if(changeProfileFragment != null && changeProfileFragment.isVisible()){
                 getSupportFragmentManager().beginTransaction().replace(R.id.host,
                         new ProfileFragment()).commit();
 
             } else if(navigationView.getCheckedItem().getItemId() == R.id.nav_cart ||
-                    navigationView.getCheckedItem().getItemId() == R.id.nav_profile){
+                    navigationView.getCheckedItem().getItemId() == R.id.nav_profile ||
+                    navigationView.getCheckedItem().getItemId() == R.id.nav_history){
 
                 toolbar.setTitle("Store");
                 getSupportFragmentManager().beginTransaction().replace(R.id.host, new StoreFragment()).commit();

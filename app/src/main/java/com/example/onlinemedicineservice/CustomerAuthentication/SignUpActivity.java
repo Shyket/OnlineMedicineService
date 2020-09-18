@@ -1,16 +1,17 @@
-package com.example.onlinemedicineservice.customerloginsignup;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.onlinemedicineservice.CustomerAuthentication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.onlinemedicineservice.Model.FirebaseUserModel;
 import com.example.onlinemedicineservice.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signupfor_customer);
+        setContentView(R.layout.signup);
 
         signUpButton = findViewById(R.id.signupbutton);
         firstNameText = findViewById(R.id.name1Edittext);
@@ -59,7 +60,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         Toast.LENGTH_LONG).show();
 
                                 navigateToSignInPage();
-                                }
+                            }
 
                         } else {
                             Toast.makeText(SignUpActivity.this, Objects.requireNonNull(task.getException()).getMessage(),
@@ -102,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                 firstNameText.getText().toString(),
                 lastNameText.getText().toString(),
                 phoneNumberText.getText().toString()
-                );
+        );
 
         if(!Uid.isEmpty()){
             userReference.child(Uid).setValue(user);
@@ -153,3 +154,4 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 }
+

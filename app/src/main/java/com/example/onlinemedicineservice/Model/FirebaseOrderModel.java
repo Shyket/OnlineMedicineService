@@ -17,31 +17,56 @@ public class FirebaseOrderModel {
      private String userName;
      private String userPhoneNumber;
      private List<String> ProductList;
-     private double lat;
-     private double lon;
+     private String address;
      private String totalPayment;
      private String paymentMethod;
+     private String transactionID;
+     private String transactionNumber;
+     private String status;
 
-    public FirebaseOrderModel(LocalDateTime orderTime,
+    public FirebaseOrderModel(String address,
+                              LocalDateTime orderTime,
                               String userId,
                               String userName,
                               String userPhoneNumber,
                               List<String> ProductList,
-                              double lat,
-                              double lon,
                               String totalPayment,
-                              String paymentMethod) {
+                              String paymentMethod,
+                              String transactionID,
+                              String transactionNumber,
+                              String status) {
 
         this.orderTime = orderTime;
         this.userId = userId;
         this.userName = userName;
         this.userPhoneNumber = userPhoneNumber;
         this.ProductList = ProductList;
-        this.lat = lat;
-        this.lon = lon;
+        this.address = address;
+        this.status = status;
         this.totalPayment = totalPayment;
         this.paymentMethod = paymentMethod;
+        this.transactionID = transactionID;
+        this.transactionNumber = transactionNumber;
+
+
     }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public void setTransactionID(String transactionID) {
+        this.transactionID = transactionID;
+    }
+
+    public String getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    public void setTransactionNumber(String transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
 
     public LocalDateTime getOrderTime() {
         return orderTime;
@@ -75,6 +100,15 @@ public class FirebaseOrderModel {
         this.userPhoneNumber = userPhoneNumber;
     }
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public List<String> getProductList() {
         return ProductList;
     }
@@ -83,21 +117,14 @@ public class FirebaseOrderModel {
         this.ProductList = productList;
     }
 
-    public double getLat() {
-        return lat;
+    public String getAddress() {
+        return address;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public double getLon() {
-        return lon;
-    }
-
-    public void setLon(double lon) {
-        this.lon = lon;
-    }
 
     public String getTotalPayment() {
         return totalPayment;

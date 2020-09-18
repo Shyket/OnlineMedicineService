@@ -36,8 +36,6 @@ public class FirebaseProductModel implements Parcelable {
         quantity = in.readString();
         productId = in.readString();
     }
-
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(chemicalFormula);

@@ -14,19 +14,20 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.onlinemedicineservice.Model.FirebaseProductModel;
 import com.example.onlinemedicineservice.drawermenuitems.store.StoreFragment;
 import com.example.onlinemedicineservice.sqlDatabase.SQLProductModel;
-import com.example.onlinemedicineservice.sqlDatabase.ProductViewModel;
+import com.example.onlinemedicineservice.sqlDatabase.DBConnector;
 
 import java.util.Objects;
 
 public class ProductDetails extends Fragment {
 
     private FirebaseProductModel product;
-    private ProductViewModel productViewModel;
+    private DBConnector connector;
     private int quantity; //this field stores how many product people has added to the cart.. initially it will be 0
     private int availableProduct; //this field stores how many products are available in the stock,
 
     //UI components
     private TextView productName;
+    private TextView productAvailabilityText;
     private TextView productChemicalFormula;
     private TextView productCompanyName;
     private TextView productDosageForm;
@@ -37,6 +38,7 @@ public class ProductDetails extends Fragment {
     private Button addButton;
     private Button plusButton;
     private Button minusButton;
+    private String companyName;
 
     public ProductDetails(@NonNull FirebaseProductModel product){
         this.product = product;
@@ -46,7 +48,9 @@ public class ProductDetails extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.product_details, container, false);
 
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        connector = new ViewModelProvider(this).get(DBConnector.class);
+
+
 
         //get all the ui component with their ids
         initializeUIcomponent(rootView);
@@ -60,7 +64,12 @@ public class ProductDetails extends Fragment {
         productDosageForm.setText(product.getDosageForm());
         productStrength.setText(product.getStrength());
         productChemicalFormula.setText(product.getChemicalFormula());
-        productPrice.setText(product.getPrice());
+        productPrice.setText(product.getPrice() + " TK");
+        if(Integer.parseInt(product.getQuantity()) > 0){
+            productAvailabilityText.setText("In Stock");
+        }else{
+            productAvailabilityText.setText("Out Of Stock");
+        }
 
         //add button listener when add button is pressed
         addButton.setOnClickListener(v -> {
@@ -75,7 +84,7 @@ public class ProductDetails extends Fragment {
                                                                 this.product.getStrength(),
                                                                 quantity);
                 //stores the product in local database
-                productViewModel.insertProduct(SQLProductModel);
+                connector.insertProduct(SQLProductModel);
 
                 Toast.makeText(getContext(), "added", Toast.LENGTH_SHORT).show();
 
@@ -123,6 +132,7 @@ public class ProductDetails extends Fragment {
     private void initializeUIcomponent(View rootView){
 
         productName = rootView.findViewById(R.id.productNameText);
+        productAvailabilityText = rootView.findViewById(R.id.productAvailabilityText);
         productChemicalFormula = rootView.findViewById(R.id.chemicalText);
         productCompanyName = rootView.findViewById(R.id.companyNameText);
         productDosageForm = rootView.findViewById(R.id.dosageFormText);
